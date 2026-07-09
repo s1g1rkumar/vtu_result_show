@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTU Bulk Result Scraper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-graduation-cap"></i> VTU Result Scraper</h1>
+            <p>Efficiently fetch and consolidate results for multiple USNs.</p>
+        </header>
+
+        <section class="input-section">
+            <h2 class="section-title"><i class="fas fa-list-ol"></i> Input USN List</h2>
+
+            <div class="form-group usn-generator-container">
+                <label><i class="fas fa-magic"></i> Quick USN Range Generator</label>
+                <p class="helper-text">Generate sequential USNs quickly (e.g., 1BI23EC001 to 1BI23EC015).</p>
+                <div class="usn-generator-inputs">
+                    <input type="text" id="usn-prefix" placeholder="Prefix (e.g., 1BI23EC)" maxlength="7">
+                    <input type="number" id="usn-start" placeholder="Start (e.g., 1)" min="1">
+                    <input type="number" id="usn-end" placeholder="End (e.g., 15)" min="1">
+                    <button id="generate-button" class="secondary-button" title="Generate USNs and add to input box."><i class="fas fa-arrow-down"></i> Add</button>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="usn-input">Enter USNs <span class="required-star">*</span></label>
+                <textarea id="usn-input" rows="8"
+                    placeholder="Enter USNs, one per line or comma-separated.&#10;Example:&#10;1BI23EC001&#10;1BI23EC002, 1BI23CS003"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject-code-input">Optional Subject Code Filter</label>
+                <p class="helper-text">Only retrieve data for a specific subject code across all USNs.</p>
+                <input type="text" id="subject-code-input" placeholder="Example: BEC503">
+            </div>
+
+            <h2 class="section-title"><i class="fas fa-link"></i> Result Page Configuration</h2>
+            <div class="form-group url-inputs-container">
+                <label>VTU Result Page URLs</label>
+                <p class="helper-text">Ensure these URLs match the current active VTU result server.</p>
+                <input type="url" id="index-url-input"
+                    placeholder="Index URL (e.g., https://results.vtu.ac.in/JJEcbcs25/index.php)"
+                    value="{{ default_index_url }}">
+                <input type="url" id="result-url-input"
+                    placeholder="Result URL (e.g., https://results.vtu.ac.in/JJEcbcs25/resultpage.php)"
+                    value="{{ default_result_url }}">
+            </div>
+
+            <button id="fetch-button">
+                <span class="spinner" id="loading-spinner"></span>
+                <span id="button-text"><i class="fas fa-file-download"></i> Fetch & Generate Excel</span>
+            </button>
+        </section>
+
+        <section class="output-section">
+            <h2 class="section-title"><i class="fas fa-chart-bar"></i> Processing Summary</h2>
+            <div id="status-message" class="message-box initial">
+                Ready to scrape! Enter USNs and click the button above to begin.
+            </div>
+            <div id="summary-output" class="summary-box hidden"></div>
+            <div id="failed-output" class="failed-list hidden"></div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 VTU Result Scraper | Powered by Nandan kumar.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

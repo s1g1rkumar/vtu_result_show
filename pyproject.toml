@@ -1,0 +1,30 @@
+[project]
+name = "vtu_result_scraper"
+version = "0.1.0"
+description = "Bulk VTU result scraper with CAPTCHA solving using Tesseract and OpenCV."
+requires-python = ">=3.10"
+
+dependencies = [
+  "flask==3.1.2",
+  "flask-cors==6.0.1",
+  "python-dotenv==1.1.1",
+  "requests==2.32.5",
+  "beautifulsoup4==4.13.5",
+  "pandas==2.3.2",
+  "urllib3==1.26.20",
+  "openpyxl==3.1.5",
+  "xlsxwriter==3.2.9",
+  "pytesseract==0.3.13",
+  "opencv-python-headless==4.12.0.88",
+  "numpy==2.2.6"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+# --- ADD THIS PART BELOW ---
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["static*", "templates*", "tests*"]

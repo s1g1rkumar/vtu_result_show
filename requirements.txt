@@ -1,0 +1,11 @@
+flask
+flask-cors
+python-dotenv
+pandas
+requests
+beautifulsoup4
+pytesseract
+opencv-python-headless
+numpy
+xlsxwriter
+urllib3
