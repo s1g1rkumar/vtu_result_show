@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- Configuration ---
-  const API_URL = "http://127.0.0.1:5000/api/vtu/results";
-  // const API_URL = "https://vtu-result-scraper.vercel.app/api/vtu/results";
+  // const API_URL = "http://127.0.0.1:5000/api/vtu/results";
+  const API_URL = "https://vtu-result-show.vercel.app/api/vtu/results";
 
   // --- DOM Elements ---
   const usnInput = document.getElementById("usn-input");
